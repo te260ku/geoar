@@ -12,19 +12,40 @@
     </script>
 </head>
 
+<script src="./script.js"></script>
+<body style='margin: 0; overflow: hidden;'>
+    <a-scene
+       vr-mode-ui="enabled: false"
+		embedded
+        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
+        <a-camera gps-camera rotation-reader>
+		</a-camera>
+	</a-scene>
+</body>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>GeoAR.js demo</title>
+    <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script>
+        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
+    </script>
+</head>
+
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
         vr-mode-ui="enabled: false"
 		embedded
-        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: true;'>
+        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
         
-        <a-camera gps-camera rotation-reader></a-camera>
+        <a-camera gps-camera="minDistance: 20;" rotation-reader></a-camera>
 
-        <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.5 0.5 0.5" gps-entity-place="longitude: 35.394062; latitude: 139.470908;" animation-mixer/>    
-
-        <!-- <a-gltf-model src="./assets/magnemite/scene.gltf" position="0 0.5 -5" scale="0.15 0.15 0.15"></a-gltf-model> -->
-
-        <!-- <a-sphere position="0 0.5 -5" radius="1.0" color="#EF2D5E"></a-sphere> -->
+        <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: 35.393626; latitude: 139.470360;" animation-mixer/>    
 
     </a-scene>
-</body>
+</body> -->
