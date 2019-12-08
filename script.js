@@ -56,12 +56,12 @@ var models = [
         scale: '0.2 0.2 0.2',
         rotation: '0 180 0',
         info: 'Articuno, Lv. 80, HP 100/100',
-    },
+    }
 ];
 
 
 
-var modelIndex = 1;
+var modelIndex = 0;
 // モデル自体のパスと色々なオプションの追加
 var setModel = function (model, entity) {
     if (model.scale) {
