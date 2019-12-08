@@ -76,7 +76,7 @@ var setModel = function (model, entity) {
         entity.setAttribute('position', model.position);
     }
 
-    entity.setAttribute('gltf-model', model.url);
+    entity.setAttribute('gltf-model', './assets/articuno/scene.gltf');
 
     // テキストの表示
     // const div = document.querySelector('.instructions');
