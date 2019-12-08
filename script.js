@@ -3,7 +3,26 @@ window.onload = () => {
     button.innerText = '﹖';
 
     // placesにあらかじめ設定した名前と緯度経度のデータを入れる
-    let places = staticLoadPlaces();
+    // let places = staticLoadPlaces();
+
+    let places = [
+        // 西輝野あたり
+        {
+            name: 'TestOne',
+            location: {
+                lat: 35.393626,
+                lng: 139.470360,
+            },
+        }, 
+        // トヨペット前の道路
+        {
+            name: 'TestTwo',
+            location: {
+                lat: 35.393923,
+                lng: 139.470519,
+            },
+        },
+    ];
 
     // 指定した場所にモデルを描画する
     renderPlaces(places);
