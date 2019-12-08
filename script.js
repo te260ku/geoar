@@ -3,26 +3,26 @@ window.onload = () => {
     // button.innerText = '﹖';
 
     // placesにあらかじめ設定した名前と緯度経度のデータを入れる
-    let places = staticLoadPlaces();
+    // let places = staticLoadPlaces();
 
-    // let places = [
-    //     // 西輝野あたり
-    //     {
-    //         name: 'TestOne',
-    //         location: {
-    //             lat: 35.393626,
-    //             lng: 139.470360,
-    //         },
-    //     }, 
-    //     // トヨペット前の道路
-    //     {
-    //         name: 'TestTwo',
-    //         location: {
-    //             lat: 35.393923,
-    //             lng: 139.470519,
-    //         },
-    //     },
-    // ];
+    let places = [
+        // 西輝野あたり
+        {
+            name: 'TestOne',
+            location: {
+                lat: 35.393626,
+                lng: 139.470360,
+            },
+        }, 
+        // トヨペット前の道路
+        {
+            name: 'TestTwo',
+            location: {
+                lat: 35.393923,
+                lng: 139.470519,
+            },
+        },
+    ];
 
     // 指定した場所にモデルを描画する
     renderPlaces(places);
@@ -61,7 +61,7 @@ var models = [
 
 
 
-var modelIndex = 0;
+var modelIndex = 1;
 // モデル自体のパスと色々なオプションの追加
 var setModel = function (model, entity) {
     if (model.scale) {
@@ -76,7 +76,7 @@ var setModel = function (model, entity) {
         entity.setAttribute('position', model.position);
     }
 
-    entity.setAttribute('gltf-model', './assets/articuno/scene.gltf');
+    entity.setAttribute('gltf-model', model.url);
 
     // テキストの表示
     // const div = document.querySelector('.instructions');
