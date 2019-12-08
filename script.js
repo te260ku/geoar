@@ -39,6 +39,8 @@ var models = [
     },
 ];
 
+
+
 var modelIndex = 0;
 var setModel = function (model, entity) {
     if (model.scale) {
@@ -63,9 +65,10 @@ function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
 
     places.forEach((place) => {
+
+        // 初期表示するモデルの設定
         let latitude = place.location.lat;
         let longitude = place.location.lng;
-
         let model = document.createElement('a-entity');
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 
@@ -73,6 +76,7 @@ function renderPlaces(places) {
 
         model.setAttribute('animation-mixer', '');
 
+        // クリックイベント
         document.querySelector('button[data-action="change"]').addEventListener('click', function () {
             var entity = document.querySelector('[gps-entity-place]');
             modelIndex++;
