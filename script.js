@@ -73,12 +73,12 @@ function renderPlaces(places) {
 
         let latitude = place.location.lat;
         let longitude = place.location.lng;
-        let title = place.name;
+        // let title = place.name;
         // モデル用の空entityタグを生成
         let model = document.createElement('a-entity');
         // タグに緯度と経度を追加
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        model.setAttribute('name', `${title}`);
+        // model.setAttribute('name', `${title}`);
 
         // ここのmodel引数はentityタグ．entityにmodelsから取り出したモデルの情報を追加．
         setModel(models[modelIndex], model);
@@ -101,31 +101,31 @@ function renderPlaces(places) {
         //     setModel(models[newIndex], entity);
         // });
 
-        const clickListener = function (ev) {
-            ev.stopPropagation();
-            ev.preventDefault();
+        // const clickListener = function (ev) {
+        //     ev.stopPropagation();
+        //     ev.preventDefault();
 
-            const name = ev.target.getAttribute('name');
+        //     const name = ev.target.getAttribute('name');
 
-            const el = ev.detail.intersection && ev.detail.intersection.object.el;
+        //     const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
-            if (el && el === ev.target) {
-                // const label = document.createElement('span');
-                // const container = document.createElement('div');
-                const label = document.querySelector('.instructions');
+        //     if (el && el === ev.target) {
+        //         // const label = document.createElement('span');
+        //         // const container = document.createElement('div');
+        //         const label = document.querySelector('.instructions');
                 
-                // container.setAttribute('id', 'place-label');
-                label.innerText = name;
-                // container.appendChild(label);
-                // document.body.appendChild(container);
+        //         // container.setAttribute('id', 'place-label');
+        //         label.innerText = name;
+        //         // container.appendChild(label);
+        //         // document.body.appendChild(container);
 
-                setTimeout(() => {
-                    container.parentElement.removeChild(container);
-                }, 1500);
-            }
-        };
+        //         setTimeout(() => {
+        //             container.parentElement.removeChild(container);
+        //         }, 1500);
+        //     }
+        // };
 
-        icon.addEventListener('click', clickListener);
+        // model.addEventListener('click', clickListener);
 
         scene.appendChild(model);
     });
