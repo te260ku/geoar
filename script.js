@@ -124,7 +124,7 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
 
-            const name = ev.target.getAttribute('name');
+            // const name = ev.target.getAttribute('name');
 
             const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
