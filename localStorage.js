@@ -11,14 +11,8 @@ $(document).ready(function(){
 
 	var add = function(){
         // タイトルと本文の入力を取得
-        // この入力情報を現在地に変更すればOK
 		// var ttl = $(".memoForm #title").val();
         // var bdy = $(".memoForm #body").val();
-
-
-        // geolocation
-// ユーザーの端末がGeoLocation APIに対応しているかの判定
-
 
     // 対応している場合
     if( navigator.geolocation )
@@ -35,31 +29,21 @@ $(document).ready(function(){
                 // データの整理
                 ttl = data.latitude ;
                 bdy = data.longitude ;
-                var alt = data.altitude ;
-                var accLatlng = data.accuracy ;
-                var accAlt = data.altitudeAccuracy ;
-                var heading = data.heading ;
-                var speed = data.speed ;
+                // var alt = data.altitude ;
+                // var accLatlng = data.accuracy ;
+                // var accAlt = data.altitudeAccuracy ;
+                // var heading = data.heading ;
+                // var speed = data.speed ;
     
-                // HTMLへの書き出し
                 // document.getElementById( 'result' ).innerHTML = '<dl><dt>緯度</dt><dd>' + lat + '</dd><dt>経度</dt><dd>' + lng + '</dd><dt>緯度、経度の精度</dt><dd>' + accLatlng;
-                // return (lat, lng);
 
                 addMemo(ttl,bdy);
 		        saveMemo(ttl,bdy);
-    
             },
     
             // [第2引数] 取得に失敗した場合の関数
             function( error )
             {
-                // エラーコード(error.code)の番号
-                // 0:UNKNOWN_ERROR				原因不明のエラー
-                // 1:PERMISSION_DENIED			利用者が位置情報の取得を許可しなかった
-                // 2:POSITION_UNAVAILABLE		電波状況などで位置情報が取得できなかった
-                // 3:TIMEOUT					位置情報の取得に時間がかかり過ぎた…
-    
-                // エラー番号に対応したメッセージ
                 var errorInfo = [
                     "原因不明のエラーが発生しました…。" ,
                     "位置情報の取得が許可されませんでした…。" ,
@@ -72,13 +56,8 @@ $(document).ready(function(){
     
                 // エラーメッセージ
                 var errorMessage = "[エラー番号: " + errorNo + "]\n" + errorInfo[ errorNo ] ;
-                
-                // return errorMessage;
-    
-                // アラート表示
+            
                 alert( errorMessage ) ;
-    
-                // HTMLに書き出し
                 // document.getElementById("result").innerHTML = errorMessage;
             } ,
     
@@ -95,21 +74,14 @@ $(document).ready(function(){
     // 対応していない場合
     else
     {
-        // エラーメッセージ
         var errorMessage = "お使いの端末は、GeoLacation APIに対応していません。" ;
-    
-        // アラート表示
         alert( errorMessage ) ;
-    
-        // HTMLに書き出し
         // document.getElementById( 'result' ).innerHTML = errorMessage ;
-        
-        
     }
+	}; // add
 
-        
-	};
 
+    // これはちゃんと機能してる
 	var addMemo = function(ttl,bdy){
 		// var template =
         //             '<input type="text" id="title" class="form-control" readonly="readonly" value="%s"/>' +
@@ -129,15 +101,22 @@ $(document).ready(function(){
 	memoArr = [];
 	var storageKey = 'memoObj';
 
+
 	var saveMemo = function(ttl,bdy){
+        // ---
 		var memoObj = {
 			ttl : ttl,
 			bdy : bdy
 		};
-		memoArr.push(memoObj);
-		saveStorage(storageKey,memoArr);
+        memoArr.push(memoObj);
+        
+        // ---ここまでは正常に動いている
+
+        saveStorage(storageKey,memoArr);
+        // localStorage.setItem(key, JSON.stringify(val));
 	}
 
+    
 	var resetMemo = function(){
 		$("#memoArea").children().remove();
 		window.localStorage.clear();
@@ -148,21 +127,22 @@ $(document).ready(function(){
 		if (memoObjs == null) {
             return;
         } else {
-            for (var i = 0; i < memoObjs.length; i ++) {
-                var memoObj = memoObjs[i];
-                var ttl = memoObj.ttl;
-                var bdy = memoObj.bdy;
-                var memoObj = {
-                    ttl : ttl,
-                    bdy : bdy
-            };
-        }
-		
+		for (var i = 0; i < memoObjs.length; i ++) {
+			var memoObj = memoObjs[i];
+			var ttl = memoObj.ttl;
+			var bdy = memoObj.bdy;
+			var memoObj = {
+				ttl : ttl,
+				bdy : bdy
+			};
 		memoArr.push(memoObj);
 		saveStorage(storageKey,memoArr);
 			addMemo(ttl,bdy);
-		}
+        }
+        }
 	};
+
+	
 
 	// ページ読込み時にメモ復帰
 	readMemo();
