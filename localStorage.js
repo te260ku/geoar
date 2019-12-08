@@ -12,10 +12,102 @@ $(document).ready(function(){
 	var add = function(){
         // タイトルと本文の入力を取得
         // この入力情報を現在地に変更すればOK
-		var ttl = $(".memoForm #title").val();
-		var bdy = $(".memoForm #body").val();
-		addMemo(ttl,bdy);
-		saveMemo(ttl,bdy);
+		// var ttl = $(".memoForm #title").val();
+        // var bdy = $(".memoForm #body").val();
+
+
+        // geolocation
+// ユーザーの端末がGeoLocation APIに対応しているかの判定
+
+
+    // 対応している場合
+    if( navigator.geolocation )
+    {
+        // 現在地を取得
+        navigator.geolocation.getCurrentPosition(
+    
+            // [第1引数] 取得に成功した場合の関数
+            function( position )
+            {
+                // 取得したデータの整理
+                var data = position.coords ;
+    
+                // データの整理
+                ttl = data.latitude ;
+                bdy = data.longitude ;
+                var alt = data.altitude ;
+                var accLatlng = data.accuracy ;
+                var accAlt = data.altitudeAccuracy ;
+                var heading = data.heading ;
+                var speed = data.speed ;
+    
+                // HTMLへの書き出し
+                // document.getElementById( 'result' ).innerHTML = '<dl><dt>緯度</dt><dd>' + lat + '</dd><dt>経度</dt><dd>' + lng + '</dd><dt>緯度、経度の精度</dt><dd>' + accLatlng;
+                // return (lat, lng);
+
+                addMemo(ttl,bdy);
+		        saveMemo(ttl,bdy);
+    
+            },
+    
+            // [第2引数] 取得に失敗した場合の関数
+            function( error )
+            {
+                // エラーコード(error.code)の番号
+                // 0:UNKNOWN_ERROR				原因不明のエラー
+                // 1:PERMISSION_DENIED			利用者が位置情報の取得を許可しなかった
+                // 2:POSITION_UNAVAILABLE		電波状況などで位置情報が取得できなかった
+                // 3:TIMEOUT					位置情報の取得に時間がかかり過ぎた…
+    
+                // エラー番号に対応したメッセージ
+                var errorInfo = [
+                    "原因不明のエラーが発生しました…。" ,
+                    "位置情報の取得が許可されませんでした…。" ,
+                    "電波状況などで位置情報が取得できませんでした…。" ,
+                    "位置情報の取得に時間がかかり過ぎてタイムアウトしました…。"
+                ] ;
+    
+                // エラー番号
+                var errorNo = error.code ;
+    
+                // エラーメッセージ
+                var errorMessage = "[エラー番号: " + errorNo + "]\n" + errorInfo[ errorNo ] ;
+                
+                // return errorMessage;
+    
+                // アラート表示
+                alert( errorMessage ) ;
+    
+                // HTMLに書き出し
+                // document.getElementById("result").innerHTML = errorMessage;
+            } ,
+    
+            // [第3引数] オプション
+            {
+                "enableHighAccuracy": false,
+                "timeout": 8000,
+                "maximumAge": 30000,
+            }
+    
+        ) ;
+    }
+    
+    // 対応していない場合
+    else
+    {
+        // エラーメッセージ
+        var errorMessage = "お使いの端末は、GeoLacation APIに対応していません。" ;
+    
+        // アラート表示
+        alert( errorMessage ) ;
+    
+        // HTMLに書き出し
+        // document.getElementById( 'result' ).innerHTML = errorMessage ;
+        
+        
+    }
+
+        
 	};
 
 	var addMemo = function(ttl,bdy){
@@ -78,7 +170,7 @@ $(document).ready(function(){
 	//イベントハンドル
 	$("#btnAdd").on('click',function(){
         // ここの内容，つまりadd関数の中身を，取得した現在地を格納するものに変更する
-		add();
+        add();
 	});
 	$("#btnReset").on('click',function(){
 		resetMemo();
@@ -88,6 +180,7 @@ $(document).ready(function(){
 
 
 
-// 
+
+
 
 
