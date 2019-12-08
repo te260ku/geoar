@@ -134,7 +134,7 @@ function renderPlaces(places) {
                 const label = document.querySelector('.instructions');
                 
                 // container.setAttribute('id', 'place-label');
-                label.innerText = name;
+                label.innerText = "Clicked!";
                 // container.appendChild(label);
                 // document.body.appendChild(container);
 
