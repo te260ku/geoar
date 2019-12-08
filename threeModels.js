@@ -11,9 +11,9 @@ window.onload = () => {
 
 function staticLoadPlaces() {
     return [
-        // 西輝野あたり
+        // 西輝野
         {
-            name: 'TestOne',
+            name: 'Pokemon',
             location: {
                 lat: 35.393626,
                 lng: 139.470360,
@@ -21,7 +21,7 @@ function staticLoadPlaces() {
         }, 
         // トヨペット前の道路
         {
-            name: 'TestTwo',
+            name: 'Pokemon',
             location: {
                 lat: 35.393923,
                 lng: 139.470519,
@@ -34,9 +34,21 @@ function staticLoadPlaces() {
 var models = [
     {
         url: './assets/magnemite/scene.gltf',
-        scale: '0.5 0.5 0.5',
+        scale: '1 1 1',
         info: 'Magnemite, Lv. 5, HP 10/10',
         rotation: '0 180 0',
+    },
+    {
+        url: './assets/articuno/scene.gltf',
+        scale: '0.2 0.2 0.2',
+        rotation: '0 180 0',
+        info: 'Articuno, Lv. 80, HP 100/100',
+    },
+    {
+        url: './assets/dragonite/scene.gltf',
+        scale: '0.08 0.08 0.08',
+        rotation: '0 180 0',
+        info: 'Dragonite, Lv. 99, HP 150/150',
     },
 ];
 
@@ -60,8 +72,8 @@ var setModel = function (model, entity) {
     entity.setAttribute('gltf-model', model.url);
 
     // テキストの表示
-    // const div = document.querySelector('.instructions');
-    // div.innerText = model.info;
+    const div = document.querySelector('.instructions');
+    div.innerText = model.info;
 };
 
 
@@ -73,59 +85,25 @@ function renderPlaces(places) {
 
         let latitude = place.location.lat;
         let longitude = place.location.lng;
-        let title = place.name;
         // モデル用の空entityタグを生成
         let model = document.createElement('a-entity');
         // タグに緯度と経度を追加
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        model.setAttribute('name', `${title}`);
 
         // ここのmodel引数はentityタグ．entityにmodelsから取り出したモデルの情報を追加．
         setModel(models[modelIndex], model);
 
         // これはいらないかな
-        // model.setAttribute('animation-mixer', '');
+        model.setAttribute('animation-mixer', '');
 
-        // // // クリックイベント
-        // document.querySelector('button[data-action="change"]').addEventListener('click', function (ev, taeget) {
-
-        //     const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-        //         if (aEntity && intersectedElement === aEntity) {
-        //             const div = document.querySelector('.instructions');
-        //             div.innerText = model.info;
-        //         }
-        //     // すでにあるコンポーネントを指定している
-        //     var entity = document.querySelector('[gps-entity-place]');
-        //     modelIndex++;
-        //     var newIndex = modelIndex % models.length;
-        //     setModel(models[newIndex], entity);
-        // });
-
-        const clickListener = function (ev) {
-            ev.stopPropagation();
-            ev.preventDefault();
-
-            const name = ev.target.getAttribute('name');
-
-            const el = ev.detail.intersection && ev.detail.intersection.object.el;
-
-            if (el && el === ev.target) {
-                // const label = document.createElement('span');
-                // const container = document.createElement('div');
-                const label = document.querySelector('.instructions');
-                
-                // container.setAttribute('id', 'place-label');
-                label.innerText = name;
-                // container.appendChild(label);
-                // document.body.appendChild(container);
-
-                setTimeout(() => {
-                    container.parentElement.removeChild(container);
-                }, 1500);
-            }
-        };
-
-        icon.addEventListener('click', clickListener);
+        // クリックイベント
+        document.querySelector('button[data-action="change"]').addEventListener('click', function () {
+            // すでにあるコンポーネントを指定している
+            var entity = document.querySelector('[gps-entity-place]');
+            modelIndex++;
+            var newIndex = modelIndex % models.length;
+            setModel(models[newIndex], entity);
+        });
 
         scene.appendChild(model);
     });
