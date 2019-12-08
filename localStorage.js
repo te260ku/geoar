@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 	var add = function(){
         // タイトルと本文の入力を取得
-		// var ttl = $(".memoForm #title").val();
+		var title = $(".memoForm #title").val();
         // var bdy = $(".memoForm #body").val();
 
     // 対応している場合
@@ -37,8 +37,8 @@ $(document).ready(function(){
     
                 // document.getElementById( 'result' ).innerHTML = '<dl><dt>緯度</dt><dd>' + lat + '</dd><dt>経度</dt><dd>' + lng + '</dd><dt>緯度、経度の精度</dt><dd>' + accLatlng;
 
-                addMemo(ttl,bdy);
-		        saveMemo(ttl,bdy);
+                addMemo(title, ttl,bdy);
+		        saveMemo(title, ttl,bdy);
             },
     
             // [第2引数] 取得に失敗した場合の関数
@@ -82,38 +82,37 @@ $(document).ready(function(){
 
 
     // これはちゃんと機能してる
-	var addMemo = function(ttl,bdy){
+	var addMemo = function(title, ttl,bdy){
 		// var template =
         //             '<input type="text" id="title" class="form-control" readonly="readonly" value="%s"/>' +
         //   '<textarea class="form-control" rows="3" id="body" readonly="readonly">%s</textarea>';
         var template =
-                    '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s</p>';
-                    template = template.replace('%s',ttl).replace('%s',bdy);
+                    '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
+                    template = template.replace('%s',title).replace('%s',ttl).replace('%s',bdy);
 
         // ストレージエリアに要素を追加
 		$("#memoArea").append(template);
 
         // 入力欄を初期化
 		$(".memoForm #title").val('');
-		$(".memoForm #body").val('');
+		// $(".memoForm #body").val('');
 	}
 
 	memoArr = [];
 	var storageKey = 'memoObj';
 
 
-	var saveMemo = function(ttl,bdy){
+	var saveMemo = function(title, ttl, bdy){
         // ---
 		var memoObj = {
+            title : title, 
 			ttl : ttl,
 			bdy : bdy
 		};
         memoArr.push(memoObj);
         
-        // ---ここまでは正常に動いている
 
         saveStorage(storageKey,memoArr);
-        // localStorage.setItem(key, JSON.stringify(val));
 	}
 
     
@@ -130,14 +129,16 @@ $(document).ready(function(){
 		for (var i = 0; i < memoObjs.length; i ++) {
 			var memoObj = memoObjs[i];
 			var ttl = memoObj.ttl;
-			var bdy = memoObj.bdy;
+            var bdy = memoObj.bdy;
+            var title = memoObj.title;
 			var memoObj = {
+                title : title, 
 				ttl : ttl,
 				bdy : bdy
 			};
 		memoArr.push(memoObj);
 		saveStorage(storageKey,memoArr);
-			addMemo(ttl,bdy);
+			addMemo(title,ttl,bdy);
         }
         }
 	};
