@@ -1,6 +1,6 @@
 window.onload = () => {
-    const button = document.querySelector('button[data-action="change"]');
-    button.innerText = '﹖';
+    // const button = document.querySelector('button[data-action="change"]');
+    // button.innerText = '﹖';
 
     // placesにあらかじめ設定した名前と緯度経度のデータを入れる
     // let places = staticLoadPlaces();
@@ -52,10 +52,10 @@ function staticLoadPlaces() {
 // モデルデータの格納．とりあえずこれは1つでいい
 var models = [
     {
-        url: './assets/magnemite/scene.gltf',
-        scale: '0.5 0.5 0.5',
-        info: 'Magnemite, Lv. 5, HP 10/10',
+        url: './assets/articuno/scene.gltf',
+        scale: '0.2 0.2 0.2',
         rotation: '0 180 0',
+        info: 'Articuno, Lv. 80, HP 100/100',
     },
 ];
 
@@ -138,9 +138,9 @@ function renderPlaces(places) {
                 // container.appendChild(label);
                 // document.body.appendChild(container);
 
-                setTimeout(() => {
-                    container.parentElement.removeChild(container);
-                }, 1500);
+                // setTimeout(() => {
+                //     container.parentElement.removeChild(container);
+                // }, 1500);
             }
         };
 
