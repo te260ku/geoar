@@ -71,7 +71,13 @@ window.onload = () => {
 		$(".memoForm #title").val('');
 	}
 
-	memoArr = [];
+	memoArr = [
+        {
+            title : test, 
+            ttl : 35.393626,
+            bdy : 139.470360
+        }
+    ];
     var storageKey = 'memoObj';
     
 	var saveMemo = function(title, ttl, bdy){
