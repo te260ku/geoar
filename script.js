@@ -1,6 +1,6 @@
 window.onload = () => {
-    // const button = document.querySelector('button[data-action="change"]');
-    // button.innerText = '﹖';
+    const button = document.querySelector('button[data-action="change"]');
+    button.innerText = '+';
 
     // placesにあらかじめ設定した名前と緯度経度のデータを入れる
     // let places = staticLoadPlaces();
