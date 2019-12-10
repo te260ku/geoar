@@ -218,12 +218,12 @@ function renderPlaces(places) {
 
         let latitude = place.location.lat;
         let longitude = place.location.lng;
-        // let title = place.name;
+        let title = place.name;
         // モデル用の空entityタグを生成
         let model = document.createElement('a-entity');
         // タグに緯度と経度を追加
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        // model.setAttribute('name', `${title}`);
+        model.setAttribute('name', `${title}`);
 
         // ここのmodel引数はentityタグ．entityにmodelsから取り出したモデルの情報を追加．
         setModel(models[modelIndex], model);
