@@ -12,13 +12,11 @@
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
     </script>
     <script src="./script.js"></script>
-    <!-- <script src="./threeModels.js"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./style.css"/>
 </head>
 
-<body style='margin: 0; overflow: hidden;'>
-    <!-- 文字情報 -->
+<body>
     <div class="centered instructions">Waiting</div>
 
     <a-scene 
@@ -32,31 +30,25 @@
     <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
 
-    <!-- ボタン -->
     <div class="centered">
-        
-        <!-- <input type="text" id="title" class="form-control" placeholder="タイトル" /> -->
-
-
-              <!-- <label for="exampleFormControlInput1">Email address</label> -->
         <div class="container">
             <div class="input-area">
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name of Places">
-        <button data-action="change" class="mx-auto mt-3"></button>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name of Places">
+                <button data-action="change" class="mx-auto mt-3"></button>
             </div>
 
             <div class="memoApp">
-                    <div class="memoForm">
+                    <div class="input-form">
                       <input type="text" id="title" class="form-control" placeholder="タイトル" />
                       <!-- <textarea class="form-control" rows="3" placeholder="本文" id="body"></textarea> -->
-                      <button type="button" class="btn btn-primary btn-block" id="btnAdd">追加</button>
+                      <button type="button" class="btn btn-primary btn-block" id="add-button">追加</button>
                     </div>
                   
                     <div id="memoArea">
                         <h1 id="countArea"></h1>
                     </div>
                   
-                    <button type="button" class="btn btn-primary btn-block" id="btnReset">リセット</button>
+                    <button type="button" class="btn btn-primary btn-block" id="reset-button">リセット</button>
                 </div>
             
                 <div id="result"></div>

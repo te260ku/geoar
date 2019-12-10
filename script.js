@@ -16,7 +16,7 @@ window.onload = () => {
 	};
 
 	var add = function(){
-	    var title = $(".memoForm #title").val();
+	    var title = $(".input-form #title").val();
 
         if( navigator.geolocation )
         {
@@ -72,7 +72,7 @@ window.onload = () => {
         count ++;
         countArea.innerText = count;
         // 入力欄を初期化
-		$(".memoForm #title").val('');
+		$(".input-form #title").val('');
 	}
 
 	memoArr = [
@@ -128,10 +128,10 @@ window.onload = () => {
 	readMemo();
 
 
-	$("#btnAdd").on('click',function(){
+	$("#add-button").on('click',function(){
         add();
 	});
-	$("#btnReset").on('click',function(){
+	$("#reset-button").on('click',function(){
 		resetMemo();
     });
     
@@ -216,9 +216,9 @@ function renderPlaces(places) {
 
     places.forEach((place) => {
 
-        let latitude = place.lat;
-        let longitude = place.lng;
-        let title = place.name;
+        let latitude = place.ttl;
+        let longitude = place.bdy;
+        let title = place.title;
         // モデル用の空entityタグを生成
         let model = document.createElement('a-entity');
         // タグに緯度と経度を追加
