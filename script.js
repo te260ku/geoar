@@ -52,7 +52,7 @@ function staticLoadPlaces() {
 // モデルデータの格納．とりあえずこれは1つでいい
 var models = [
     {
-        url: './assets/pins/scene.gltf',
+        url: './assets/lowpoly_pin/scene.gltf',
         scale: '0.2 0.2 0.2',
         rotation: '0 180 0',
         info: 'Pins',
@@ -124,7 +124,7 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
 
-            // const name = ev.target.getAttribute('name');
+            var name = ev.target.getAttribute('name');
 
             const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
@@ -134,7 +134,7 @@ function renderPlaces(places) {
                 const label = document.querySelector('.instructions');
                 
                 // container.setAttribute('id', 'place-label');
-                label.innerText = "Clicked!";
+                label.innerText = name;
                 // container.appendChild(label);
                 // document.body.appendChild(container);
 
