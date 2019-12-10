@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.querySelector('button[data-action="change"]');
     // button.innerText = '+';
-    button.innerText = '2';
+    button.innerText = '3';
 
     // let places = staticLoadPlaces();
 
@@ -16,60 +16,57 @@ window.onload = () => {
 	// };
 
 	// var add = function(){
-	// 	var title = $(".memoForm #title").val();
+	//     var title = $(".memoForm #title").val();
 
-    // if( navigator.geolocation )
-    // {
-    //     navigator.geolocation.getCurrentPosition(
-    //         function( position )
-    //         {
-    //             var data = position.coords ;
-    //             ttl = data.latitude ;
-    //             bdy = data.longitude ;
-    //             addMemo(title, ttl,bdy);
-	// 	        saveMemo(title, ttl,bdy);
-    //         },
-    
-    //         function( error )
-    //         {
-    //             var errorInfo = [
-    //                 "原因不明のエラーが発生しました…。" ,
-    //                 "位置情報の取得が許可されませんでした…。" ,
-    //                 "電波状況などで位置情報が取得できませんでした…。" ,
-    //                 "位置情報の取得に時間がかかり過ぎてタイムアウトしました…。"
-    //             ] ;
-    
-    //             var errorNo = error.code ;
-    //             var errorMessage = "[エラー番号: " + errorNo + "]\n" + errorInfo[ errorNo ] ;
-            
-    //             alert( errorMessage ) ;
-    //         } ,
+    //     if( navigator.geolocation )
+    //     {
+    //         navigator.geolocation.getCurrentPosition(
+    //             function( position )
+    //             {
+    //                 var data = position.coords ;
+    //                 ttl = data.latitude ;
+    //                 bdy = data.longitude ;
+    //                 addMemo(title, ttl,bdy);
+    //                 saveMemo(title, ttl,bdy);
+    //             },
+        
+    //             function( error )
+    //             {
+    //                 var errorInfo = [
+    //                     "unexpected error" ,
+    //                     "prihibited" ,
+    //                     "signal blocked" ,
+    //                     "timeout"
+    //                 ] ;
+        
+    //                 var errorNo = error.code ;
+    //                 var errorMessage = "[error : " + errorNo + "]\n" + errorInfo[ errorNo ] ;
+                
+    //                 alert( errorMessage ) ;
+    //             } ,
 
-    //         {
-    //             "enableHighAccuracy": false,
-    //             "timeout": 8000,
-    //             "maximumAge": 30000,
-    //         }
-    //     ) ;
-    // }
-
-    // else
-    // {
-    //     var errorMessage = "お使いの端末は、GeoLacation APIに対応していません。" ;
-    //     alert( errorMessage ) ;
-    // }
+    //             {
+    //                 // ここtrueにしておく
+    //                 "enableHighAccuracy": false,
+    //                 "timeout": 8000,
+    //                 "maximumAge": 30000,
+    //             }
+    //         ) ;
+    //     }
+    //     else
+    //     {
+    //         var errorMessage = "Don't Compatible with GeoLocation API" ;
+    //         alert( errorMessage ) ;
+    //     }
 	// }; // add
 
 
-
 	// var addMemo = function(title, ttl,bdy){
-    //     var template =
-    //                 '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
-    //                 template = template.replace('%s',title).replace('%s',ttl).replace('%s',bdy);
+    //     var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
+    //     template = template.replace('%s',title).replace('%s',ttl).replace('%s',bdy);
 
     //     // ストレージエリアに要素を追加
 	// 	$("#memoArea").append(template);
-
     //     // 入力欄を初期化
 	// 	$(".memoForm #title").val('');
 	// }
@@ -120,7 +117,7 @@ window.onload = () => {
 	// // ページ読込み時にメモ復帰
 	// readMemo();
 
-	// //イベントハンドル
+
 	// $("#btnAdd").on('click',function(){
     //     add();
 	// });
@@ -133,49 +130,47 @@ window.onload = () => {
         // 西輝野あたり
         {
             name: 'TestOne',
-            location: {
-                lat: 35.393626,
-                lng: 139.470360,
-            },
+            // location: {
+            lat: 35.393626,
+            lng: 139.470360,
+            // },
         }, 
         // トヨペット前の道路
         {
             name: 'TestTwo',
-            location: {
-                lat: 35.393923,
-                lng: 139.470519,
-            },
+            // location: {
+            lat: 35.393923,
+            lng: 139.470519,
+            // },
         },
     ];
-
-    // let places = memoArr;
 
     // 指定した場所にモデルを描画する
     renderPlaces(places);
 };
 
-function staticLoadPlaces() {
-    return [
-        // 西輝野あたり
-        {
-            name: 'TestOne',
-            location: {
-                lat: 35.393626,
-                lng: 139.470360,
-            },
-        }, 
-        // トヨペット前の道路
-        {
-            name: 'TestTwo',
-            location: {
-                lat: 35.393923,
-                lng: 139.470519,
-            },
-        },
-    ];
-}
+// function staticLoadPlaces() {
+//     return [
+//         // 西輝野あたり
+//         {
+//             name: 'TestOne',
+//             location: {
+//                 lat: 35.393626,
+//                 lng: 139.470360,
+//             },
+//         }, 
+//         // トヨペット前の道路
+//         {
+//             name: 'TestTwo',
+//             location: {
+//                 lat: 35.393923,
+//                 lng: 139.470519,
+//             },
+//         },
+//     ];
+// }
 
-// モデルデータの格納．とりあえずこれは1つでいい
+
 var models = [
     {
         url: './assets/lowpoly_pin/scene.gltf',
@@ -186,9 +181,8 @@ var models = [
 ];
 
 
-
 var modelIndex = 0;
-// モデル自体のパスと色々なオプションの追加
+
 var setModel = function (model, entity) {
     if (model.scale) {
         entity.setAttribute('scale', model.scale);
@@ -203,21 +197,16 @@ var setModel = function (model, entity) {
     }
 
     entity.setAttribute('gltf-model', model.url);
-
-    // テキストの表示
-    // const div = document.querySelector('.instructions');
-    // div.innerText = model.info;
 };
 
 
 function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
 
-    // 位置データのそれぞれに適用．2個あったら2ループする．
     places.forEach((place) => {
 
-        let latitude = place.location.lat;
-        let longitude = place.location.lng;
+        let latitude = place.lat;
+        let longitude = place.lng;
         let title = place.name;
         // モデル用の空entityタグを生成
         let model = document.createElement('a-entity');
@@ -228,10 +217,8 @@ function renderPlaces(places) {
         // ここのmodel引数はentityタグ．entityにmodelsから取り出したモデルの情報を追加．
         setModel(models[modelIndex], model);
 
-        // これはいらないかな
-        // model.setAttribute('animation-mixer', '');
 
-        // // // クリックイベント
+        // // ボタンのクリックイベント
         // document.querySelector('button[data-action="change"]').addEventListener('click', function (ev, taeget) {
 
         //     const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
@@ -255,22 +242,12 @@ function renderPlaces(places) {
             const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
             if (el && el === ev.target) {
-                // const label = document.createElement('span');
-                // const container = document.createElement('div');
                 const label = document.querySelector('.instructions');
-                
-                // container.setAttribute('id', 'place-label');
                 label.innerText = name;
-                // container.appendChild(label);
-                // document.body.appendChild(container);
-
-                // setTimeout(() => {
-                //     container.parentElement.removeChild(container);
-                // }, 1500);
             }
         };
-
         model.addEventListener('click', clickListener);
+
 
         scene.appendChild(model);
     });
