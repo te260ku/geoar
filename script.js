@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.querySelector('button[data-action="change"]');
     // button.innerText = '+';
-    button.innerText = '3';
+    button.innerText = '4';
 
     // let places = staticLoadPlaces();
 
@@ -60,13 +60,17 @@ window.onload = () => {
         }
 	}; // add
 
+    countArea = document.getElementById("countArea");
+    count = 0;
 
 	var addMemo = function(title, ttl,bdy){
         var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
         template = template.replace('%s',title).replace('%s',ttl).replace('%s',bdy);
 
         // ストレージエリアに要素を追加
-		$("#memoArea").append(template);
+        // $("#memoArea").append(template);
+        count ++;
+        countArea.innerText = count;
         // 入力欄を初期化
 		$(".memoForm #title").val('');
 	}
