@@ -52,10 +52,10 @@ function staticLoadPlaces() {
 // モデルデータの格納．とりあえずこれは1つでいい
 var models = [
     {
-        url: './assets/articuno/scene.gltf',
+        url: './assets/pins/scene.gltf',
         scale: '0.2 0.2 0.2',
         rotation: '0 180 0',
-        info: 'Articuno, Lv. 80, HP 100/100',
+        info: 'Pins',
     }
 ];
 

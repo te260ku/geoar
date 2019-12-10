@@ -95,7 +95,9 @@ $(document).ready(function(){
 
         // 入力欄を初期化
 		$(".memoForm #title").val('');
-		// $(".memoForm #body").val('');
+        // $(".memoForm #body").val('');
+        
+        
 	}
 
 	memoArr = [];
@@ -135,10 +137,11 @@ $(document).ready(function(){
                 title : title, 
 				ttl : ttl,
 				bdy : bdy
-			};
+            };
+        // このmemoArrが必要なデータになる
 		memoArr.push(memoObj);
 		saveStorage(storageKey,memoArr);
-			addMemo(title,ttl,bdy);
+		addMemo(title,ttl,bdy);
         }
         }
 	};
