@@ -249,7 +249,7 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
 
-            // var name = ev.target.getAttribute('name');
+            let name = ev.target.getAttribute('name');
 
             const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
@@ -259,7 +259,7 @@ function renderPlaces(places) {
                 const label = document.querySelector('.instructions');
                 
                 // container.setAttribute('id', 'place-label');
-                label.innerText = "Clicked";
+                label.innerText = name;
                 // container.appendChild(label);
                 // document.body.appendChild(container);
 
