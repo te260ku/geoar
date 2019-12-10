@@ -6,147 +6,148 @@ window.onload = () => {
     // let places = staticLoadPlaces();
 
     // localstorage
-    // var saveStorage = function(key,val){
-	// 	localStorage.setItem(key, JSON.stringify(val));
-	// };
+    var saveStorage = function(key,val){
+		localStorage.setItem(key, JSON.stringify(val));
+	};
 
-	// var getStorage = function(key){
-	// 	var obj = localStorage.getItem(key);
-	// 	return JSON.parse(obj);
-	// };
+	var getStorage = function(key){
+		var obj = localStorage.getItem(key);
+		return JSON.parse(obj);
+	};
 
-	// var add = function(){
-	//     var title = $(".memoForm #title").val();
+	var add = function(){
+	    var title = $(".memoForm #title").val();
 
-    //     if( navigator.geolocation )
-    //     {
-    //         navigator.geolocation.getCurrentPosition(
-    //             function( position )
-    //             {
-    //                 var data = position.coords ;
-    //                 ttl = data.latitude ;
-    //                 bdy = data.longitude ;
-    //                 addMemo(title, ttl,bdy);
-    //                 saveMemo(title, ttl,bdy);
-    //             },
+        if( navigator.geolocation )
+        {
+            navigator.geolocation.getCurrentPosition(
+                function( position )
+                {
+                    var data = position.coords ;
+                    ttl = data.latitude ;
+                    bdy = data.longitude ;
+                    addMemo(title, ttl,bdy);
+                    saveMemo(title, ttl,bdy);
+                },
         
-    //             function( error )
-    //             {
-    //                 var errorInfo = [
-    //                     "unexpected error" ,
-    //                     "prihibited" ,
-    //                     "signal blocked" ,
-    //                     "timeout"
-    //                 ] ;
+                function( error )
+                {
+                    var errorInfo = [
+                        "unexpected error" ,
+                        "prihibited" ,
+                        "signal blocked" ,
+                        "timeout"
+                    ] ;
         
-    //                 var errorNo = error.code ;
-    //                 var errorMessage = "[error : " + errorNo + "]\n" + errorInfo[ errorNo ] ;
+                    var errorNo = error.code ;
+                    var errorMessage = "[error : " + errorNo + "]\n" + errorInfo[ errorNo ] ;
                 
-    //                 alert( errorMessage ) ;
-    //             } ,
+                    alert( errorMessage ) ;
+                } ,
 
-    //             {
-    //                 // ここtrueにしておく
-    //                 "enableHighAccuracy": false,
-    //                 "timeout": 8000,
-    //                 "maximumAge": 30000,
-    //             }
-    //         ) ;
-    //     }
-    //     else
+                {
+                    // ここtrueにしておく
+                    "enableHighAccuracy": false,
+                    "timeout": 8000,
+                    "maximumAge": 30000,
+                }
+            ) ;
+        }
+        else
+        {
+            var errorMessage = "Don't Compatible with GeoLocation API" ;
+            alert( errorMessage ) ;
+        }
+	}; // add
+
+
+	var addMemo = function(title, ttl,bdy){
+        var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
+        template = template.replace('%s',title).replace('%s',ttl).replace('%s',bdy);
+
+        // ストレージエリアに要素を追加
+		$("#memoArea").append(template);
+        // 入力欄を初期化
+		$(".memoForm #title").val('');
+	}
+
+	memoArr = [];
+    var storageKey = 'memoObj';
+    
+	var saveMemo = function(title, ttl, bdy){
+
+		var memoObj = {
+            title : title, 
+			ttl : ttl,
+			bdy : bdy
+		};
+        memoArr.push(memoObj);
+        saveStorage(storageKey,memoArr);
+	}
+
+    
+	var resetMemo = function(){
+		$("#memoArea").children().remove();
+		window.localStorage.clear();
+	}
+
+	var readMemo = function(){
+		var memoObjs = getStorage(storageKey);
+		if (memoObjs == null) {
+            return;
+        } else {
+		for (var i = 0; i < memoObjs.length; i ++) {
+			var memoObj = memoObjs[i];
+			var ttl = memoObj.ttl;
+            var bdy = memoObj.bdy;
+            var title = memoObj.title;
+			var memoObj = {
+                title : title, 
+				ttl : ttl,
+				bdy : bdy
+            };
+        // このmemoArrが必要なデータになる
+		memoArr.push(memoObj);
+		saveStorage(storageKey,memoArr);
+		addMemo(title,ttl,bdy);
+        }
+        }
+	};
+
+	// ページ読込み時にメモ復帰
+	readMemo();
+
+
+	$("#btnAdd").on('click',function(){
+        add();
+	});
+	$("#btnReset").on('click',function(){
+		resetMemo();
+    });
+    
+
+    // let places = [
+    //     // 西輝野あたり
     //     {
-    //         var errorMessage = "Don't Compatible with GeoLocation API" ;
-    //         alert( errorMessage ) ;
-    //     }
-	// }; // add
-
-
-	// var addMemo = function(title, ttl,bdy){
-    //     var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
-    //     template = template.replace('%s',title).replace('%s',ttl).replace('%s',bdy);
-
-    //     // ストレージエリアに要素を追加
-	// 	$("#memoArea").append(template);
-    //     // 入力欄を初期化
-	// 	$(".memoForm #title").val('');
-	// }
-
-	// memoArr = [];
-    // var storageKey = 'memoObj';
-    
-	// var saveMemo = function(title, ttl, bdy){
-
-	// 	var memoObj = {
-    //         title : title, 
-	// 		ttl : ttl,
-	// 		bdy : bdy
-	// 	};
-    //     memoArr.push(memoObj);
-    //     saveStorage(storageKey,memoArr);
-	// }
-
-    
-	// var resetMemo = function(){
-	// 	$("#memoArea").children().remove();
-	// 	window.localStorage.clear();
-	// }
-
-	// var readMemo = function(){
-	// 	var memoObjs = getStorage(storageKey);
-	// 	if (memoObjs == null) {
-    //         return;
-    //     } else {
-	// 	for (var i = 0; i < memoObjs.length; i ++) {
-	// 		var memoObj = memoObjs[i];
-	// 		var ttl = memoObj.ttl;
-    //         var bdy = memoObj.bdy;
-    //         var title = memoObj.title;
-	// 		var memoObj = {
-    //             title : title, 
-	// 			ttl : ttl,
-	// 			bdy : bdy
-    //         };
-    //     // このmemoArrが必要なデータになる
-	// 	memoArr.push(memoObj);
-	// 	saveStorage(storageKey,memoArr);
-	// 	addMemo(title,ttl,bdy);
-    //     }
-    //     }
-	// };
-
-	// // ページ読込み時にメモ復帰
-	// readMemo();
-
-
-	// $("#btnAdd").on('click',function(){
-    //     add();
-	// });
-	// $("#btnReset").on('click',function(){
-	// 	resetMemo();
-    // });
-    
-
-    let places = [
-        // 西輝野あたり
-        {
-            name: 'TestOne',
-            // location: {
-            lat: 35.393626,
-            lng: 139.470360,
-            // },
-        }, 
-        // トヨペット前の道路
-        {
-            name: 'TestTwo',
-            // location: {
-            lat: 35.393923,
-            lng: 139.470519,
-            // },
-        },
-    ];
+    //         name: 'TestOne',
+    //         // location: {
+    //         lat: 35.393626,
+    //         lng: 139.470360,
+    //         // },
+    //     }, 
+    //     // トヨペット前の道路
+    //     {
+    //         name: 'TestTwo',
+    //         // location: {
+    //         lat: 35.393923,
+    //         lng: 139.470519,
+    //         // },
+    //     },
+    // ];
 
     // 指定した場所にモデルを描画する
-    renderPlaces(places);
+    // renderPlaces(places);
+    renderPlaces(memoArr);
 };
 
 // function staticLoadPlaces() {
@@ -174,7 +175,7 @@ window.onload = () => {
 var models = [
     {
         url: './assets/lowpoly_pin/scene.gltf',
-        scale: '1 1 1',
+        scale: '2 2 2',
         rotation: '0 180 0',
         info: 'Pins',
     }
