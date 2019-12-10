@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.querySelector('button[data-action="change"]');
     // button.innerText = '+';
-    button.innerText = '5';
+    button.innerText = '6';
 
     // let places = staticLoadPlaces();
 
@@ -77,15 +77,15 @@ window.onload = () => {
 
 	memoArr = [
         {
-            title : test, 
+            title : "test", 
             ttl : 35.393626,
             bdy : 139.470360
         }
     ];
+    
     var storageKey = 'memoObj';
     
 	var saveMemo = function(title, ttl, bdy){
-
 		var memoObj = {
             title : title, 
 			ttl : ttl,
