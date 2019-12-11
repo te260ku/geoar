@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.getElementById("add-button");
     // button.innerText = '+';
-    button.innerText = '10';
+    button.innerText = '11';
 
     // let places = staticLoadPlaces();
 
@@ -16,7 +16,7 @@ window.onload = () => {
 	};
 
 	var add = function(){
-	    var title = $(".input-form #title").val();
+	    var title = $(".input-area #title").val();
 
         if( navigator.geolocation )
         {
@@ -71,7 +71,7 @@ window.onload = () => {
         count ++;
         countArea.innerText = count;
         // 入力欄を初期化
-		$(".input-form #title").val('');
+		$(".input-area #title").val('');
 	}
 
 	dataArr = [
