@@ -1,7 +1,7 @@
 window.onload = () => {
-    const button = document.querySelector('button[data-action="change"]');
+    const button = document.getElementById("add-button");
     // button.innerText = '+';
-    button.innerText = '6';
+    button.innerText = '7';
 
     // let places = staticLoadPlaces();
 
@@ -23,11 +23,11 @@ window.onload = () => {
             navigator.geolocation.getCurrentPosition(
                 function( position )
                 {
-                    var data = position.coords ;
-                    ttl = data.latitude ;
-                    bdy = data.longitude ;
-                    addMemo(title, ttl,bdy);
-                    saveMemo(title, ttl,bdy);
+                    var location = position.coords ;
+                    lat = location.latitude ;
+                    lng = location.longitude ;
+                    addData(title,lat,lng);
+                    saveData(title,lat,lng);
                 },
         
                 function( error )
@@ -60,79 +60,79 @@ window.onload = () => {
         }
 	}; // add
 
-    countArea = document.getElementById("countArea");
+    countArea = document.getElementById("count-area");
     count = 0;
 
-	var addMemo = function(title, ttl,bdy){
+	var addData = function(title,lat,lng){
         var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
-        template = template.replace('%s',title).replace('%s',ttl).replace('%s',bdy);
+        template = template.replace('%s',title).replace('%s',lat).replace('%s',lng);
 
-        // ストレージエリアに要素を追加
-        // $("#memoArea").append(template);
         count ++;
         countArea.innerText = count;
         // 入力欄を初期化
 		$(".input-form #title").val('');
 	}
 
-	memoArr = [
+	dataArr = [
         {
             title : "test", 
-            ttl : 35.393626,
-            bdy : 139.470360
+            lat : 35.393626,
+            lng : 139.470360
         }
     ];
     
-    var storageKey = 'memoObj';
+    var storageKey = 'dataObj';
     
-	var saveMemo = function(title, ttl, bdy){
-		var memoObj = {
+	var saveData = function(title,lat,lng){
+		var dataObj = {
             title : title, 
-			ttl : ttl,
-			bdy : bdy
+			lat : lat,
+			lng : lng
 		};
-        memoArr.push(memoObj);
-        saveStorage(storageKey,memoArr);
+        dataArr.push(dataObj);
+        saveStorage(storageKey,dataArr);
 	}
 
     
-	var resetMemo = function(){
-		$("#memoArea").children().remove();
-		window.localStorage.clear();
+	var resetData = function(){
+		// $("#data-area").children().remove();
+        window.localStorage.clear();
+        count = 0;
+        countArea.innerText = count;
 	}
 
-	var readMemo = function(){
-		var memoObjs = getStorage(storageKey);
-		if (memoObjs == null) {
+	var readData = function(){
+		var dataObjs = getStorage(storageKey);
+		if (dataObjs == null) {
             return;
         } else {
-		for (var i = 0; i < memoObjs.length; i ++) {
-			var memoObj = memoObjs[i];
-			var ttl = memoObj.ttl;
-            var bdy = memoObj.bdy;
-            var title = memoObj.title;
-			var memoObj = {
+		for (var i = 0; i < dataObjs.length; i ++) {
+			var dataObj = dataObjs[i];
+			var lat = dataObj.lat;
+            var lng = dataObj.lng;
+            var title = dataObj.title;
+			var dataObj = {
                 title : title, 
-				ttl : ttl,
-				bdy : bdy
+				lat : lat,
+				lat : lng
             };
-        // このmemoArrが必要なデータになる
-		memoArr.push(memoObj);
-		saveStorage(storageKey,memoArr);
-		addMemo(title,ttl,bdy);
+        // このdataArrが必要なデータになる
+		dataArr.push(dataObj);
+		saveStorage(storageKey,dataArr);
+		addData(title,lat,lng);
         }
         }
 	};
 
 	// ページ読込み時にメモ復帰
-	readMemo();
+	readData();
 
 
 	$("#add-button").on('click',function(){
         add();
 	});
 	$("#reset-button").on('click',function(){
-		resetMemo();
+		resetData();
     });
     
 
@@ -157,7 +157,7 @@ window.onload = () => {
 
     // 指定した場所にモデルを描画する
     // renderPlaces(places);
-    renderPlaces(memoArr);
+    renderPlaces(dataArr);
 };
 
 // function staticLoadPlaces() {
@@ -216,8 +216,8 @@ function renderPlaces(places) {
 
     places.forEach((place) => {
 
-        let latitude = place.ttl;
-        let longitude = place.bdy;
+        let latitude = place.lat;
+        let longitude = place.lng;
         let title = place.title;
         // モデル用の空entityタグを生成
         let model = document.createElement('a-entity');
