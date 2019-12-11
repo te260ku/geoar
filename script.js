@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.getElementById("add-button");
     // button.innerText = '+';
-    button.innerText = '7';
+    button.innerText = '8';
 
     // let places = staticLoadPlaces();
 
@@ -62,7 +62,7 @@ window.onload = () => {
 
     countArea = document.getElementById("count-area");
     count = 0;
-    countArea = count;
+    countArea.innerText = count;
 
 	var addData = function(title,lat,lng){
         var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
