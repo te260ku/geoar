@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.getElementById("add-button");
     // button.innerText = '+';
-    // button.innerText = '11';
+    button.innerText = '13';
 
     // let places = staticLoadPlaces();
 
@@ -16,7 +16,8 @@ window.onload = () => {
 	};
 
 	var add = function(){
-	    var title = $(".input-area #title").val();
+        // var title = $(".input-area #title").val();
+        var title = document.getElementById("title").value;
 
         if( navigator.geolocation )
         {
@@ -71,7 +72,8 @@ window.onload = () => {
         count ++;
         countArea.innerText = count;
         // 入力欄を初期化
-		$(".input-area #title").val('');
+        // $(".input-area #title").val('');
+        document.getElementById("title").value = "";
 	}
 
 	dataArr = [
@@ -134,6 +136,13 @@ window.onload = () => {
         add();
         renderPlaces(dataArr);
     });
+
+
+// $(document).on("click", "#add-button", function() {
+//   // clickイベントの処理
+//   add();
+//         renderPlaces(dataArr);
+// });
     
 	$("#reset-button").on('click',function(){
         resetData();
@@ -269,3 +278,14 @@ function renderPlaces(places) {
         scene.appendChild(model);
     });
 }
+
+testcount = 0;
+testcountarea = document.getElementById("testcount");
+testcountarea.innerHTML = testcount;
+
+
+$(document).on("click", "#plus", function() {
+    testcount++;
+    testcountarea.innerText = testcount;
+    console.log("plus");
+});

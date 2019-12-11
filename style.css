@@ -37,7 +37,8 @@ body {
     position: fixed;
     top: 5%;
     font-size: 1.25em;
-    color: white;
+    /* color: white; */
+    color: black;
     z-index: 999999;
 }
 
