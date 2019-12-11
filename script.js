@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.getElementById("add-button");
     // button.innerText = '+';
-    button.innerText = '11';
+    // button.innerText = '11';
 
     // let places = staticLoadPlaces();
 
