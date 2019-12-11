@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     overflow: hidden;
 }
@@ -37,8 +37,7 @@ body {
     position: fixed;
     top: 5%;
     font-size: 1.25em;
-    /* color: white; */
     color: black;
     z-index: 999999;
 }
-
+ */
