@@ -62,6 +62,7 @@ window.onload = () => {
 
     countArea = document.getElementById("count-area");
     count = 0;
+    countArea = count;
 
 	var addData = function(title,lat,lng){
         var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
@@ -114,7 +115,7 @@ window.onload = () => {
 			var dataObj = {
                 title : title, 
 				lat : lat,
-				lat : lng
+				lng : lng
             };
         // このdataArrが必要なデータになる
 		dataArr.push(dataObj);
@@ -130,7 +131,9 @@ window.onload = () => {
 
 	$("#add-button").on('click',function(){
         add();
-	});
+        renderPlaces(dataArr);
+    });
+    
 	$("#reset-button").on('click',function(){
 		resetData();
     });
