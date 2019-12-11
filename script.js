@@ -1,7 +1,7 @@
 window.onload = () => {
     const button = document.getElementById("add-button");
     // button.innerText = '+';
-    button.innerText = '8';
+    button.innerText = '10';
 
     // let places = staticLoadPlaces();
 
@@ -100,6 +100,7 @@ window.onload = () => {
         window.localStorage.clear();
         count = 0;
         countArea.innerText = count;
+
 	}
 
 	var readData = function(){
@@ -135,7 +136,9 @@ window.onload = () => {
     });
     
 	$("#reset-button").on('click',function(){
-		resetData();
+        resetData();
+        dataArr = [];
+        renderPlaces(dataArr);
     });
     
 
