@@ -103,7 +103,7 @@ window.onload = () => {
 
 	var readData = function(){
 		var dataObjs = getStorage(storageKey);
-		if (dataObjs.length == 0) {
+		if (dataObjs == null) {
             return;
         } else {
 		for (var i = 0; i < dataObjs.length; i ++) {
