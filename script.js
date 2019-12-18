@@ -47,7 +47,7 @@ window.onload = () => {
                 } ,
                 {
                     // ここtrueにすると精度が上がる
-                    "enableHighAccuracy": false,
+                    "enableHighAccuracy": true,
                     "timeout": 8000,
                     "maximumAge": 30000,
                 }
@@ -60,27 +60,14 @@ window.onload = () => {
         }
 	}; 
 
-
 	var addData = function(){
-        // count ++;
         countArea.innerText = dataArr.length;
         // 入力欄を初期化
         document.getElementById("title").value = "";
 	}
 
-    // タイトルと位置情報のデータ
-	// dataArr = [
-    //     {
-    //         title : "test", 
-    //         lat : 0,
-    //         lng : 0
-    //     }
-    // ];
-
     dataArr = [];
-
     countArea = document.getElementById("count-area");
-    count = 0;
     countArea.innerText = dataArr.length;
     
     var storageKey = 'dataObj';
