@@ -28,8 +28,9 @@ window.onload = () => {
                     var location = position.coords ;
                     lat = location.latitude ;
                     lng = location.longitude ;
-                    addData(title,lat,lng);
+                    
                     saveData(title,lat,lng);
+                    addData(title,lat,lng);
                 },
                 function( error )
                 {
@@ -59,9 +60,7 @@ window.onload = () => {
         }
 	}; 
 
-    
 
-    
 	var addData = function(){
         // count ++;
         countArea.innerText = dataArr.length;
@@ -70,17 +69,19 @@ window.onload = () => {
 	}
 
     // タイトルと位置情報のデータ
-	dataArr = [
-        {
-            title : "test", 
-            lat : 0,
-            lng : 0
-        }
-    ];
+	// dataArr = [
+    //     {
+    //         title : "test", 
+    //         lat : 0,
+    //         lng : 0
+    //     }
+    // ];
+
+    dataArr = [];
 
     countArea = document.getElementById("count-area");
     count = 0;
-    countArea.innerText = dataArr.length - 1;
+    countArea.innerText = dataArr.length;
     
     var storageKey = 'dataObj';
     
