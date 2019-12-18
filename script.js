@@ -1,13 +1,14 @@
 window.onload = () => {
     const addButton = document.getElementById("add-button");
-    addButton.innerText = '1';
+    addButton.innerText = '+';
     const resetButton = document.getElementById("reset-button");
     resetButton.innerText = '-';
 
     // localstorageを使うための関数を定義
     var saveStorage = function(key,val){
 		localStorage.setItem(key, JSON.stringify(val));
-	};
+    };
+    
 
 	var getStorage = function(key){
 		var obj = localStorage.getItem(key);
@@ -60,7 +61,7 @@ window.onload = () => {
 
     countArea = document.getElementById("count-area");
     count = 0;
-    countArea.innerText = count;
+    countArea.innerText = dataArr.length;
 
     
 	var addData = function(){
@@ -73,9 +74,9 @@ window.onload = () => {
     // タイトルと位置情報のデータ
 	dataArr = [
         {
-            title : "sfc", 
-            lat : 35.393626,
-            lng : 139.470360
+            title : "test", 
+            lat : 0,
+            lng : 0
         }
     ];
     
