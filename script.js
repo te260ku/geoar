@@ -1,6 +1,6 @@
 window.onload = () => {
     const addButton = document.getElementById("add-button");
-    addButton.innerText = '+';
+    addButton.innerText = '1';
     const resetButton = document.getElementById("reset-button");
     resetButton.innerText = '-';
     // button.innerText = '17';
