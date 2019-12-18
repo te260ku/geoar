@@ -3,9 +3,6 @@ window.onload = () => {
     addButton.innerText = '1';
     const resetButton = document.getElementById("reset-button");
     resetButton.innerText = '-';
-    // button.innerText = '17';
-
-    // let places = staticLoadPlaces();
 
     // localstorageを使うための関数を定義
     var saveStorage = function(key,val){
@@ -18,7 +15,6 @@ window.onload = () => {
 	};
 
 	var add = function(){
-        // var title = $("#title").val();
         var title = document.getElementById("title").value;
         var label = document.querySelector('.instructions');
 
@@ -48,7 +44,7 @@ window.onload = () => {
                     label.innerText = errorMessage;
                 } ,
                 {
-                    // ここtrueにすると精度が上がるらしい
+                    // ここtrueにすると精度が上がる
                     "enableHighAccuracy": false,
                     "timeout": 8000,
                     "maximumAge": 30000,
@@ -67,14 +63,10 @@ window.onload = () => {
     countArea.innerText = count;
 
     
-	var addData = function(title,lat,lng){
-        var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
-        template = template.replace('%s',title).replace('%s',lat).replace('%s',lng);
-
-        count ++;
-        countArea.innerText = count;
+	var addData = function(){
+        // count ++;
+        countArea.innerText = dataArr.length;
         // 入力欄を初期化
-        // $(".input-area #title").val('');
         document.getElementById("title").value = "";
 	}
 
@@ -99,16 +91,16 @@ window.onload = () => {
         saveStorage(storageKey,dataArr);
 	}
 
-    
 	var resetData = function(){
         window.localStorage.clear();
+        dataArr = [];
         count = 0;
-        countArea.innerText = count;
+        countArea.innerText = dataArr.length;
 	}
 
 	var readData = function(){
 		var dataObjs = getStorage(storageKey);
-		if (dataObjs == null) {
+		if (dataObjs.length == 0) {
             return;
         } else {
 		for (var i = 0; i < dataObjs.length; i ++) {
@@ -121,7 +113,6 @@ window.onload = () => {
 				lat : lat,
 				lng : lng
             };
-        // このdataArrが必要なデータになる
 		dataArr.push(dataObj);
 		saveStorage(storageKey,dataArr);
 		addData(title,lat,lng);
@@ -132,7 +123,6 @@ window.onload = () => {
 	// 読込み時にデータ復帰
 	readData();
 
-
 	$("#add-button").on('click',function(){
         add();
         renderPlaces(dataArr);
@@ -140,7 +130,6 @@ window.onload = () => {
     
 	$("#reset-button").on('click',function(){
         resetData();
-        dataArr = [];
         renderPlaces(dataArr);
     });
     
@@ -148,26 +137,6 @@ window.onload = () => {
     renderPlaces(dataArr);
 };
 
-// function staticLoadPlaces() {
-//     return [
-//         // 西輝野あたり
-//         {
-//             name: 'TestOne',
-//             location: {
-//                 lat: 35.393626,
-//                 lng: 139.470360,
-//             },
-//         }, 
-//         // トヨペット前の道路
-//         {
-//             name: 'TestTwo',
-//             location: {
-//                 lat: 35.393923,
-//                 lng: 139.470519,
-//             },
-//         },
-//     ];
-// }
 
 // 使用するモデルの設定
 var models = [
@@ -178,7 +147,6 @@ var models = [
         info: 'Pins',
     }
 ];
-
 
 var modelIndex = 0;
 
@@ -216,7 +184,7 @@ function renderPlaces(places) {
         
         setModel(models[modelIndex], model);
 
-
+        // オブジェクトに対するクリックイベント
         const clickListener = function (ev) {
             ev.stopPropagation();
             ev.preventDefault();
@@ -231,19 +199,6 @@ function renderPlaces(places) {
             }
         };
         model.addEventListener('click', clickListener);
-
-
         scene.appendChild(model);
     });
 }
-
-// testcount = 0;
-// testcountarea = document.getElementById("testcount");
-// testcountarea.innerHTML = testcount;
-
-
-// $(document).on("click", "#plus", function() {
-//     testcount++;
-//     testcountarea.innerText = testcount;
-//     console.log("plus");
-// });
