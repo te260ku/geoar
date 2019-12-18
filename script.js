@@ -279,13 +279,13 @@ function renderPlaces(places) {
     });
 }
 
-testcount = 0;
-testcountarea = document.getElementById("testcount");
-testcountarea.innerHTML = testcount;
+// testcount = 0;
+// testcountarea = document.getElementById("testcount");
+// testcountarea.innerHTML = testcount;
 
 
-$(document).on("click", "#plus", function() {
-    testcount++;
-    testcountarea.innerText = testcount;
-    console.log("plus");
-});
+// $(document).on("click", "#plus", function() {
+//     testcount++;
+//     testcountarea.innerText = testcount;
+//     console.log("plus");
+// });
