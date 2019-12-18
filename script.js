@@ -1,11 +1,11 @@
 window.onload = () => {
     const button = document.getElementById("add-button");
-    // button.innerText = '+';
-    button.innerText = '16';
+    button.innerText = '+';
+    // button.innerText = '17';
 
     // let places = staticLoadPlaces();
 
-    // localstorage
+    // localstorageを使うための関数を定義
     var saveStorage = function(key,val){
 		localStorage.setItem(key, JSON.stringify(val));
 	};
@@ -16,12 +16,14 @@ window.onload = () => {
 	};
 
 	var add = function(){
-        // var title = $(".input-area #title").val();
+        // var title = $("#title").val();
         var title = document.getElementById("title").value;
+        var label = document.querySelector('.instructions');
 
         if( navigator.geolocation )
         {
             navigator.geolocation.getCurrentPosition(
+
                 function( position )
                 {
                     var location = position.coords ;
@@ -30,7 +32,6 @@ window.onload = () => {
                     addData(title,lat,lng);
                     saveData(title,lat,lng);
                 },
-        
                 function( error )
                 {
                     var errorInfo = [
@@ -39,15 +40,13 @@ window.onload = () => {
                         "signal blocked" ,
                         "timeout"
                     ] ;
-        
                     var errorNo = error.code ;
-                    var errorMessage = "[error : " + errorNo + "]\n" + errorInfo[ errorNo ] ;
-                
-                    alert( errorMessage ) ;
+                    var errorMessage = "[error : " + errorNo + "]\n" + errorInfo[ errorNo ];
+                    
+                    label.innerText = errorMessage;
                 } ,
-
                 {
-                    // ここtrueにしておく
+                    // ここtrueにすると精度が上がるらしい
                     "enableHighAccuracy": false,
                     "timeout": 8000,
                     "maximumAge": 30000,
@@ -57,14 +56,15 @@ window.onload = () => {
         else
         {
             var errorMessage = "Don't Compatible with GeoLocation API" ;
-            alert( errorMessage ) ;
+            label.innerText = errorMessage;
         }
-	}; // add
+	}; 
 
     countArea = document.getElementById("count-area");
     count = 0;
     countArea.innerText = count;
 
+    
 	var addData = function(title,lat,lng){
         var template = '<p type="text" id="title" class="form-control" readonly="readonly">%s : %s : %s</p>';
         template = template.replace('%s',title).replace('%s',lat).replace('%s',lng);
@@ -76,9 +76,10 @@ window.onload = () => {
         document.getElementById("title").value = "";
 	}
 
+    // タイトルと位置情報のデータ
 	dataArr = [
         {
-            title : "test", 
+            title : "sfc", 
             lat : 35.393626,
             lng : 139.470360
         }
@@ -98,11 +99,9 @@ window.onload = () => {
 
     
 	var resetData = function(){
-		// $("#data-area").children().remove();
         window.localStorage.clear();
         count = 0;
         countArea.innerText = count;
-
 	}
 
 	var readData = function(){
@@ -128,7 +127,7 @@ window.onload = () => {
         }
 	};
 
-	// ページ読込み時にメモ復帰
+	// 読込み時にデータ復帰
 	readData();
 
 
@@ -136,13 +135,6 @@ window.onload = () => {
         add();
         renderPlaces(dataArr);
     });
-
-
-// $(document).on("click", "#add-button", function() {
-//   // clickイベントの処理
-//   add();
-//         renderPlaces(dataArr);
-// });
     
 	$("#reset-button").on('click',function(){
         resetData();
@@ -150,28 +142,7 @@ window.onload = () => {
         renderPlaces(dataArr);
     });
     
-
-    // let places = [
-    //     // 西輝野あたり
-    //     {
-    //         name: 'TestOne',
-    //         // location: {
-    //         lat: 35.393626,
-    //         lng: 139.470360,
-    //         // },
-    //     }, 
-    //     // トヨペット前の道路
-    //     {
-    //         name: 'TestTwo',
-    //         // location: {
-    //         lat: 35.393923,
-    //         lng: 139.470519,
-    //         // },
-    //     },
-    // ];
-
     // 指定した場所にモデルを描画する
-    // renderPlaces(places);
     renderPlaces(dataArr);
 };
 
@@ -196,7 +167,7 @@ window.onload = () => {
 //     ];
 // }
 
-
+// 使用するモデルの設定
 var models = [
     {
         url: './assets/lowpoly_pin/scene.gltf',
@@ -240,24 +211,9 @@ function renderPlaces(places) {
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         model.setAttribute('name', `${title}`);
 
-        // ここのmodel引数はentityタグ．entityにmodelsから取り出したモデルの情報を追加．
+        
         setModel(models[modelIndex], model);
 
-
-        // // ボタンのクリックイベント
-        // document.querySelector('button[data-action="change"]').addEventListener('click', function (ev, taeget) {
-
-        //     const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-        //         if (aEntity && intersectedElement === aEntity) {
-        //             const div = document.querySelector('.instructions');
-        //             div.innerText = model.info;
-        //         }
-        //     // すでにあるコンポーネントを指定している
-        //     var entity = document.querySelector('[gps-entity-place]');
-        //     modelIndex++;
-        //     var newIndex = modelIndex % models.length;
-        //     setModel(models[newIndex], entity);
-        // });
 
         const clickListener = function (ev) {
             ev.stopPropagation();

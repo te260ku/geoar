@@ -21,7 +21,10 @@
 
 <body style='margin: 0; overflow: hidden;'>
 
-    <div class="centered instructions">name</div>
+    <div class="centered instructions">Click Pins</div>
+    
+    <div class="centered instructions mt-5" id="count-area">0</div>
+    
 
     <a-scene 
         cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
@@ -36,8 +39,8 @@
 
     
     <div class="centered">
-        <h1 id="count-area">0</h1>
-        <input type="text" placeholder="name of spot" class="form-control" id="title">
+        
+        <input type="text" placeholder="Name of Spot" class="form-control" id="title">
         <button data-action="change" id="add-button"></button>
     </div>
 
