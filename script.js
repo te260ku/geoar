@@ -80,11 +80,11 @@ window.onload = () => {
 
     // タイトルと位置情報のデータ
 	dataArr = [
-        // {
-        //     title : "sfc", 
-        //     lat : 35.393626,
-        //     lng : 139.470360
-        // }
+        {
+            title : "sfc", 
+            lat : 35.393626,
+            lng : 139.470360
+        }
     ];
     
     var storageKey = 'dataObj';
