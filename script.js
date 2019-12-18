@@ -59,9 +59,7 @@ window.onload = () => {
         }
 	}; 
 
-    countArea = document.getElementById("count-area");
-    count = 0;
-    countArea.innerText = dataArr.length;
+    
 
     
 	var addData = function(){
@@ -79,6 +77,10 @@ window.onload = () => {
             lng : 0
         }
     ];
+
+    countArea = document.getElementById("count-area");
+    count = 0;
+    countArea.innerText = dataArr.length - 1;
     
     var storageKey = 'dataObj';
     
