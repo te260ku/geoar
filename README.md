@@ -1,6 +1,8 @@
 # Map with GeoAR
 
-GeoAR.jsを用いたロケーションベースのwebARアプリです．
+GeoAR.jsを用いたロケーションベースのwebARアプリです．スマートフォンのGPSを使って取得した現在地の座標にバーチャルなピンを配置します．それぞれのピンには名称などのデジタル情報を付加することができます．
+
+![hello](screenshot.png)
 
 - URL（スマートフォンでの動作推奨）
 https://te260ku.github.io/geoar/
