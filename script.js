@@ -21,6 +21,7 @@ window.onload = () => {
 
         if( navigator.geolocation )
         {
+            // 現在地の取得．ステータスに応じてログを吐く
             navigator.geolocation.getCurrentPosition(
 
                 function( position )
@@ -66,6 +67,7 @@ window.onload = () => {
         document.getElementById("title").value = "";
 	}
 
+    // データを格納するための配列
     dataArr = [];
     countArea = document.getElementById("count-area");
     countArea.innerText = dataArr.length;
@@ -73,6 +75,7 @@ window.onload = () => {
     var storageKey = 'dataObj';
     
 	var saveData = function(title,lat,lng){
+        // 受け取った値をフォーマットして管理用の配列とストレージに保存
 		var dataObj = {
             title : title, 
 			lat : lat,
@@ -82,6 +85,7 @@ window.onload = () => {
         saveStorage(storageKey,dataArr);
 	}
 
+    // ロードするたびに管理配列はリセットする
 	var resetData = function(){
         window.localStorage.clear();
         dataArr = [];
@@ -90,6 +94,7 @@ window.onload = () => {
 	}
 
 	var readData = function(){
+        // ロード時に毎回ストレージから値を取得して，管理配列に格納する
 		var dataObjs = getStorage(storageKey);
 		if (dataObjs == null) {
             return;
@@ -111,7 +116,6 @@ window.onload = () => {
         }
 	};
 
-	// 読込み時にデータ復帰
 	readData();
 
 	$("#add-button").on('click',function(){
@@ -124,7 +128,7 @@ window.onload = () => {
         renderPlaces(dataArr);
     });
     
-    // 指定した場所にモデルを描画する
+    // 指定した座標にモデルを描画する
     renderPlaces(dataArr);
 };
 
